@@ -1,0 +1,23 @@
+Q1) Download a CSV file from OECD, read it and remove the last row
+
+oecd_csv <- read.csv(file="C:\\MRAO\\AMMA 2017\\Data\\data_2017\\data_2017\\DP_LIVE_08072017230634515.csv")
+oecd_scv <- head(oecd_csv,-1)
+
+
+# Q2)
+install.packages("rvest")
+library(rvest)
+extract_data <- "https://en.wikipedia.org/wiki/India%E2%80%93Pakistan_cricket_rivalry"
+file<-read_html(extract_data)
+tables<-html_nodes(file, "table")
+table1 <- html_table(tables[3], fill = TRUE)
+View(table1)
+table2 <- as.data.frame(table1)
+View(table2)
+matchesWon=0  #Initiating the tracking counter
+for(i in 1:nrow(table2))
+{
+  matchesWon <- matchesWon+table2$India[i]
+}
+print(paste('Total no of ODIs won by India are'))
+print(matchesWon)
